@@ -1,0 +1,138 @@
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+/* display none until init */
+.owl-carousel{
+	display: none;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+	-webkit-transition: height 500ms ease-in-out;
+	-moz-transition: height 500ms ease-in-out;
+	-ms-transition: height 500ms ease-in-out;
+	-o-transition: height 500ms ease-in-out;
+	transition: height 500ms ease-in-out;
+}
+	
+.owl-carousel .owl-item{
+	float: left;
+}
+.owl-theme .owl-controls{
+	text-align: center;
+}
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div{
+	cursor: pointer;
+}
+.owl-controls .owl-page{
+	display: inline-block;
+}
+.owl-controls .owl-page span{
+	display: block;
+	width: 20px;
+	height: 20px;
+	
+	margin: 0 5px;
+}
+.owl-controls .owl-page.active span,
+.owl-controls .owl-page:hover span{
+	background-position: -22px 0;
+}
+.slider_how .owl-controls .owl-page span{
+	width: 16px;
+	height: 16px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfbfbf+0,ffffff+100 */
+	background: rgb(191,191,191); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(191,191,191,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(191,191,191,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(191,191,191,1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	border-radius: 50%;
+	box-shadow: 0 3px 5px rgba(0,0,0,.50);
+}
+.slider_how .owl-controls .owl-page.active span,
+.slider_how .owl-controls .owl-page:hover span{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f67912+0,881029+100 */
+	background: rgb(246,121,18); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(246,121,18,1) 0%, rgba(136,16,41,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(246,121,18,1) 0%,rgba(136,16,41,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(246,121,18,1) 0%,rgba(136,16,41,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f67912', endColorstr='#881029',GradientType=0 ); /* IE6-9 */
+}
+.owl-controls .owl-buttons div{
+	background: url(../images/arrow.png) 0 0 no-repeat;
+	width: 21px;
+	height: 25px;
+	position: absolute;
+	margin-top: -12.5px;
+	top: 50%;
+	left: 0;
+	z-index: 2;
+	text-indent: -9999px;
+	transition: background .2s linear, opacity .2s linear;
+	opacity: 0.5;
+}
+.owl-controls .owl-buttons div.owl-prev{
+	background-position: 0 0;
+}
+.owl-controls .owl-buttons div.owl-next{
+	background-position: -24px -27px;
+	left: auto;
+	right: 0;
+}
+
+.owl-controls .owl-buttons div.owl-prev:hover{
+	background-position: -24px 0;
+}
+.owl-controls .owl-buttons div.owl-next:hover{
+	background-position: 0 -27px;
+}
+
+.owl-controls {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing { 
+  
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}
+
