@@ -44,6 +44,23 @@ $(function(){
 	});
 });
 
+$(document).ready(function () {
+	$('form').submit(function (e) {
+		e.preventDefault();
+
+		var form = $(this);
+
+		$.ajax({
+			url: "/mail.php",
+			method: "POST",
+			data: $(this).serializeArray(),
+			success: function (data) {
+				console.log(data);
+			}
+		});
+	});
+})
+
 $(window).load(function(){
 	$(window).scroll(function(){
         if( $(window).scrollTop() > 200){
