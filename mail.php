@@ -1,44 +1,62 @@
 <?php
+//print_r($_POST);
+require 'PHPMailerAutoload.php';
 
-$sendmail = 'frontline_tz@mail.ru';
+$recipient = 'shop@specio.kz';
 
 $username = $_POST['username'];
 $usermail = $_POST['usermail'];
 $userphone = $_POST['userphone'];
 $usermessage = $_POST['usermessage'];
 
-print_r($_POST);
 
 if ((isset($usermail) && $usermail != '') || (isset($userphone) && $userphone != '')) {
-    // Для отправки HTML-письма должен быть установлен заголовок Content-type
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-// Дополнительные заголовки
-    $headers .= 'To: ' .$sendmail. "\r\n";
-    $headers .= 'From: Specio Order <noreply@specio.kz>' . "\r\n";
-    $headers .= 'Cc: noreply@specio.kz' . "\r\n";
-    $headers .= 'Bcc: noreply@specio.kz' . "\r\n";
-
-
 
     $message = '';
 
     if (isset($username) and $username != '')
-        $message .= '<p>Имя клиента: '.$username.'</p>';
+        $message .= '<p>Имя клиента: ' . $username . '</p>';
     if (isset($usermail) and $usermail != '')
-        $message .= '<p>Почта клиента: '.$usermail.'</p>';
+        $message .= '<p>Почта клиента: ' . $usermail . '</p>';
     if (isset($userphone) and $userphone != '')
-        $message .= '<p>Телефон клиента: '.$userphone.'</p>';
+        $message .= '<p>Телефон клиента: ' . $userphone . '</p>';
     if (isset($usermessage) and $usermessage != '')
-        $message .= '<p>Сообщение клиента: '.$usermessage.'</p>';
+        $message .= '<p>Сообщение клиента: ' . $usermessage . '</p>';
 
 //    mail($sendmail,'Specio заявка',$message, $headers);
 
-    if(mail($sendmail,'Specio заявка',$message, $headers)){
-        echo "The email was successfully sent.";
+    $mail = new PHPMailer;
+//
+//    $mail->SMTPDebug = 3;                               // Enable verbose debug output
+//
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.yandex.ru';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'noreply@specio.kz';                 // SMTP username
+    $mail->Password = 'SAdlka@@!#alsdk';                           // SMTP password
+////$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 25;                                   // TCP port to connect to
+    $mail->CharSet = 'UTF-8';
+//
+    $mail->setFrom('noreply@specio.kz', 'Заявка Specio.kz');
+    $mail->addReplyTo("$usermail", "$username");     // Add a recipient
+    $mail->addAddress($recipient, 'Магазин Specio.kz');
+////$mail->addCC('cc@example.com');
+////$mail->addBCC('bcc@example.com');
+//
+////    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+////    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+    $mail->isHTML(true);                                  // Set email format to HTML
+//
+    $mail->Subject = 'Заявка Specio.kz';
+    $mail->Body = $message;
+//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    if (!$mail->send()) {
+//    echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
     } else {
-        echo "The email($email_subject) was NOT sent.";
+        echo 'Message has been sent';
     }
 
 //    echo $message;
